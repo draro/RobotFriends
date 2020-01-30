@@ -36,21 +36,22 @@ class App extends Component {
         const filteredRobots = robots.filter(robot => {
             return robot.name.toLowerCase().includes(searchfield.toLowerCase());
         })
-        return isPending ?
-            <h1 className='tc'>Loading...</h1> :
-            (
+        return (
 
-                <div className='tc'>
-                    <h1>RoboFriends</h1>
-                    <SearchBox searchChange={onSearchChange} />
-                    <Scroll>
+            <div className='tc'>
+                <h1>RoboFriends</h1>
+                <SearchBox searchChange={onSearchChange} />
+                <Scroll>
+                    {isPending ? <h1 className='tc'>Loading...</h1> :
+
                         <ErrorBoundry>
                             <CardList robots={filteredRobots} />
                         </ErrorBoundry>
-                    </Scroll>
-                </div >
-            );
-    };
+                    }
+                </Scroll>
+            </div >
+        );
+    }
 }
 
 export default connect(mapStateToProps, MapDispatchToProps)(App);
